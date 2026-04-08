@@ -2,15 +2,95 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GPA Calculator</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <div class="page">
+
+      <!-- Header -->
+      <header class="header">
+        <h1>GPA Calculator</h1>
+        <p>Add your courses, grades, and credits to compute your GPA</p>
+      </header>
+
+      <!-- GPA Display -->
+      <div class="card gpa-card">
+        <div class="ring-wrapper">
+          <svg class="ring-svg" viewBox="0 0 128 128">
+            <circle class="ring-bg" cx="64" cy="64" r="56" />
+            <circle class="ring-fill" id="ringFill" cx="64" cy="64" r="56" />
+          </svg>
+          <div class="ring-center">
+            <span class="gpa-value" id="gpaValue">—</span>
+            <span class="gpa-label">GPA</span>
+          </div>
+        </div>
+        <div class="stats" id="statsRow" style="display:none">
+          <div class="stat">
+            <div class="stat-value" id="statCourses">0</div>
+            <div class="stat-label">Courses</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="statCredits">0</div>
+            <div class="stat-label">Credits</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value standing" id="statStanding">—</div>
+            <div class="stat-label">Standing</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Course List -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Your Courses</h2>
+        </div>
+        <div id="courseList">
+          <div class="empty-state" id="emptyState">
+            <div class="empty-icon">📚</div>
+            <p>No courses yet. Add your first course below!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Course Form -->
+      <div class="card">
+        <h2 class="form-title">Add a Course</h2>
+        <div class="form-row">
+          <input
+            type="text"
+            id="courseName"
+            class="input"
+            placeholder="Course name (e.g. Chemistry 101)"
+          />
+          <select id="courseGrade" class="select grade-select"></select>
+          <select id="courseCredits" class="select">
+            <option value="1">1 credit</option>
+            <option value="2">2 credits</option>
+            <option value="3" selected>3 credits</option>
+            <option value="4">4 credits</option>
+            <option value="5">5 credits</option>
+            <option value="6">6 credits</option>
+          </select>
+          <button id="addBtn" class="btn-add" disabled>Add Course</button>
+        </div>
+      </div>
+
+      <!-- Grade Scale Reference -->
+      <div class="card">
+        <h2 class="form-title">Grade Scale Reference</h2>
+        <div class="grade-scale" id="gradeScale"></div>
+      </div>
+
+      <p class="hint">Click on any course name, grade, or credits to edit them.</p>
+    </div>
+
+    <script type="module" src="/src/app.js"></script>
   </body>
 </html>
